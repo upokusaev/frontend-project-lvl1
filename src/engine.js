@@ -18,7 +18,7 @@ const startEngine = (description, createDataGame) => {
     const question = getQuestion(dataGame);
     const trueAnswer = getAnswer(dataGame);
     const answer = readlineSync.question(`Question: ${question}\nYour answer: `);
-    if (Number(answer) !== Number(trueAnswer)) {
+    if (String(answer) !== String(trueAnswer)) {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was '${trueAnswer}'.\nLet's try again, ${name}!\n`);
       return playGame(count);
     }
