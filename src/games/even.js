@@ -2,15 +2,16 @@
 import { buildData, getRandomNum } from '../tools';
 import startEngine from '../engine';
 
-const description = 'Answer "yes" if number even otherwise answer "no".\n';
+const description = 'Answer "yes" if number even otherwise answer "no".';
 
-export const isEven = () => {
-  const num = getRandomNum(1, 100);
-  const trueAnswer = (num % 2 === 0) ? 'yes' : 'no';
-  const dataGame = buildData(num, trueAnswer);
-  return dataGame;
+const isEven = number => number % 2 === 0;
+
+export const generateGameData = () => {
+  const question = getRandomNum(1, 100);
+  const answer = isEven(question) ? 'yes' : 'no';
+  return buildData(question, answer);
 };
 
 export default () => {
-  startEngine(description, isEven);
+  startEngine(description, generateGameData);
 };

@@ -3,9 +3,10 @@ import { buildData, getRandomNum } from '../tools';
 import startEngine from '../engine';
 
 const description = 'What is the result of the expression?';
+const strOperators = '+-*';
 
-const calcAnswer = (num1, num2, operatorIndex) => {
-  switch (operatorIndex) {
+const calcAnswer = (num1, num2, indexOperator) => {
+  switch (indexOperator) {
     case 0:
       return num1 + num2;
     case 1:
@@ -17,17 +18,15 @@ const calcAnswer = (num1, num2, operatorIndex) => {
   }
 };
 
-const calcGame = () => {
+const generateGameData = () => {
   const num1 = getRandomNum(1, 20);
   const num2 = getRandomNum(1, 10);
-  const strOperators = '+-*';
-  const operatorIndex = getRandomNum(0, strOperators.length - 1);
-  const question = `${num1} ${strOperators[operatorIndex]} ${num2}`;
-  const trueAnswer = calcAnswer(num1, num2, operatorIndex);
-  const dataGame = buildData(question, trueAnswer);
-  return dataGame;
+  const indexOperator = getRandomNum(0, strOperators.length - 1);
+  const question = `${num1} ${strOperators[indexOperator]} ${num2}`;
+  const answer = calcAnswer(num1, num2, indexOperator);
+  return buildData(question, answer);
 };
 
 export default () => {
-  startEngine(description, calcGame);
+  startEngine(description, generateGameData);
 };

@@ -2,7 +2,6 @@
   "name": "braingames-frw23",
   "version": "1.0.0",
   "description": "Project of Hexlet",
-  "main": "index.js",
   "bin": {
     "brain-even": "dist/bin/brain-even.js",
     "brain-calc": "dist/bin/brain-calc.js",
@@ -18,8 +17,12 @@
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "prepublishOnly": "npm run build"
   },
-  "author": "",
+  "author": "Yury Pokusaev",
   "license": "ISC",
+  "keywords": [
+    "BrainGames",
+    "game"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
@@ -28,11 +31,11 @@
     "babel-eslint": "^10.0.2",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-babel": "^5.3.0"
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.18.2"
   },
   "dependencies": {
     "@hexlet/pairs": "^1.0.10",
-    "eslint-plugin-import": "^2.18.2",
     "readline-sync": "^1.4.10"
   }
 }

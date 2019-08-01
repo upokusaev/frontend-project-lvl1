@@ -4,22 +4,25 @@ import startEngine from '../engine';
 
 const description = 'What number is missing in the progression?';
 
-const startProgression = () => {
-  const startNum = getRandomNum(1, 9);
-  const stepNum = getRandomNum(2, 7);
-  const genProgression = (start, step) => {
-    const longProgression = 10;
-    const indexHideNum = getRandomNum(1, longProgression);
-    const iter = (count, acc, num, hideNum) => {
-      if (count === 0) return buildData(acc, hideNum);
-      if (count === indexHideNum) return iter(count - 1, `${acc} ${'..'}`, num + step, num + step);
-      return iter(count - 1, `${acc} ${String(num + step)}`, num + step, hideNum);
-    };
-    return iter(longProgression, '', start);
+const generateGameData = () => {
+  const firstNumber = getRandomNum(1, 9);
+  const step = getRandomNum(2, 7);
+  const progressionLength = 10;
+  const hiddenNumberIndex = getRandomNum(1, progressionLength);
+  const genProgression = (currentNumber, lengthCounter, strProgression, hiddenNumber) => {
+    if (lengthCounter > progressionLength) {
+      const question = strProgression;
+      const answer = hiddenNumber;
+      return buildData(question, answer);
+    }
+    if (lengthCounter === hiddenNumberIndex) {
+      return genProgression(currentNumber + step, lengthCounter + 1, `${strProgression} ..`, currentNumber + step);
+    }
+    return genProgression(currentNumber + step, lengthCounter + 1, `${strProgression} ${currentNumber + step}`, hiddenNumber);
   };
-  return genProgression(startNum, stepNum);
+  return genProgression(firstNumber, 1, '');
 };
 
 export default () => {
-  startEngine(description, startProgression);
+  startEngine(description, generateGameData);
 };

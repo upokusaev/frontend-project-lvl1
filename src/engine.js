@@ -2,30 +2,34 @@
 import readlineSync from 'readline-sync';
 import { getQuestion, getAnswer } from './tools';
 
-const numberGames = 3;
+const numberOfRounds = 3;
 
 const startEngine = (description, createDataGame) => {
   console.log('Welcome to the Brain Games!');
   console.log(description);
-  const name = readlineSync.question("What's your name?\n");
-  console.log(`Hello, ${name}!\n`);
-  const playGame = (count) => {
-    if (count === 0) {
-      console.log(`Congratulations, ${name}!`);
-      return 'Success';
+  const playerName = readlineSync.question("What's your name?\n");
+  console.log(`Hello, ${playerName}!\n`);
+
+  const playGame = (roundCounter) => {
+    if (roundCounter === 0) {
+      console.log(`Congratulations, ${playerName}!`);
+      return;
     }
-    const dataGame = createDataGame();
-    const question = getQuestion(dataGame);
-    const trueAnswer = getAnswer(dataGame);
-    const answer = readlineSync.question(`Question: ${question}\nYour answer: `);
-    if (String(answer) !== String(trueAnswer)) {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${trueAnswer}'.\nLet's try again, ${name}!\n`);
-      return playGame(count);
+    const gameData = createDataGame();
+    const question = getQuestion(gameData);
+    const trueAnswer = getAnswer(gameData);
+    const playerAnswer = readlineSync.question(`Question: ${question}\nYour answer: `);
+    if (String(playerAnswer) !== String(trueAnswer)) {
+      console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${trueAnswer}'.`);
+      console.log(`Let's try again, ${playerName}!\n`);
+      playGame(roundCounter);
+      return;
     }
     console.log('Correct!\n');
-    return playGame(count - 1);
+    playGame(roundCounter - 1);
   };
-  return playGame(numberGames);
+
+  playGame(numberOfRounds);
 };
 
 export default startEngine;
