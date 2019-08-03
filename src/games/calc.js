@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { buildData, getRandomNum } from '../tools';
 import startEngine from '../engine';
 

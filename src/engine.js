@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import readlineSync from 'readline-sync';
 import { getQuestion, getAnswer } from './tools';
 
@@ -19,10 +18,9 @@ const startEngine = (description, createDataGame) => {
     const question = getQuestion(gameData);
     const trueAnswer = getAnswer(gameData);
     const playerAnswer = readlineSync.question(`Question: ${question}\nYour answer: `);
-    if (String(playerAnswer) !== String(trueAnswer)) {
+    if (playerAnswer !== trueAnswer) {
       console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${trueAnswer}'.`);
       console.log(`Let's try again, ${playerName}!\n`);
-      playGame(roundCounter);
       return;
     }
     console.log('Correct!\n');
