@@ -16,7 +16,7 @@ const generateGameData = () => {
     return genProgression(currentNumber + step, lengthCounter + 1, `${strProgression} ${currentNumber + step}`);
   };
   const question = genProgression(firstNumber - step, 0, '');
-  const answer = (step * hiddenNumberIndex) + firstNumber;
+  const answer = String((step * hiddenNumberIndex) + firstNumber);
   return buildData(question, answer);
 };
 

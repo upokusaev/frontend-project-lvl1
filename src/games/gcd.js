@@ -17,7 +17,7 @@ const generateGameData = () => {
   const num1 = getRandomNum(1, 200);
   const num2 = getRandomNum(1, 200);
   const question = `${num1} ${num2}`;
-  const answer = calcNod(num1, num2);
+  const answer = String(calcNod(num1, num2));
   return buildData(question, answer);
 };
 

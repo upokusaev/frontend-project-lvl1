@@ -7,10 +7,10 @@ const isPrime = (number) => {
   if (number <= 1) return false;
   const divider = Math.ceil(number / 2);
   const iter = (div) => {
-    if (div === 1) return true;
-    return (number % div === 0) ? false : iter(div - 1);
+    if (div >= divider) return true;
+    return (number % div === 0) ? false : iter(div + 1);
   };
-  return iter(divider);
+  return iter(2);
 };
 
 const generateGameData = () => {
